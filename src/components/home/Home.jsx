@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NavBar from './NavBar'
 import Banner from './Banner'
 import Slide from './Slide';
@@ -20,8 +20,8 @@ const Home = () => {
         <Banner />
         <MidSlides title="Deal of the Day" timer={true} />
         <MidSection />
-        <Slide title="Best Discounts for You" timer={false} />
-        <Slide title="Season's Top Pick" timer={false} />
+        <Slide title="Best Discounts for You" timer={false} autoPlay={false}/>
+        <Slide title="Season's Top Pick" timer={false} autoPlay={false}/>
         
       </Component>
     </>

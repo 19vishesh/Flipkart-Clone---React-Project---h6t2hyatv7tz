@@ -83,8 +83,8 @@ const CustomButton = () => {
         accountPresent ? <Profile localUserName={localUserName} accountPresent={accountPresent} setAccountPresent={setAccountPresent} /> :
         <LoginButton variant='contained' onClick={openDialog}>Login</LoginButton>
       }
-      <Typography style={{ marginTop: 3, width: 135 }}>Become a Seller</Typography>
-      <Typography style={{ marginTop: 3 }}>More</Typography>
+      <Typography style={{ marginTop: 3, width: 135, cursor:'pointer' }}>Become a Seller</Typography>
+      <Typography style={{ marginTop: 3, cursor: 'pointer' }}>More</Typography>
 
       <Container to='/cart'>
         <Badge badgeContent={totalQuantity} color="secondary">

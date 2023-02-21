@@ -68,7 +68,7 @@ const Text = styled(Typography)`
 
 // //=============================================================== function starts===================================================
 
-const Slide = (props) => {
+const Slide = ({ title, timer }) => {
 
     //calling the apidata from App.js using useContext
     // const productData = useContext(apiProductData);
@@ -96,9 +96,9 @@ const Slide = (props) => {
     return (
         <Component>
             <Deal>
-                <DealText>{props.title}</DealText>
+                <DealText>{title}</DealText>
                 {
-                    props.timer &&
+                    timer &&
                     <Timer>
                         <img src={timerURL} alt="timer" style={{ width: 24, marginRight: 10 }} />
                         <Countdown date={Date.now() + 5.04e+7} renderer={renderer} />
@@ -112,6 +112,8 @@ const Slide = (props) => {
                 swipeable={false}
                 draggable={false}
                 infinite={true}
+                autoPlay={false}
+                autoPlaySpeed={2000}
                 keyBoardControl={true}
                 slidesToSlide={1}
                 containerClass="carousel-container"
@@ -121,7 +123,7 @@ const Slide = (props) => {
             >
                 {
                     items.map(item => (
-                        <Link to={`products/${item.id}`} style={{textDecoration:'none'}}>
+                        <Link to={`products/${item.id}`} style={{ textDecoration: 'none' }}>
                             <Box textAlign='center' style={{ padding: '25px 15px' }}>
                                 <Image src={item.image} alt="banner" />
                                 <Text style={{ fontWeight: 600, color: '#212121' }}>{item.title}</Text>
