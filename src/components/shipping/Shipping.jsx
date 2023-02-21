@@ -71,11 +71,12 @@ const Shipping = () => {
         if(userName!==''){
             alert("✨Congratulation!🎊, You Order ❤ has been Placed Successfully");
             setUserName('');
-            
+            localStorage.removeItem("shoppingCart");
             navigate('/');
+            window.location.reload();
         }
         else
-            alert("please Enter the details")
+            alert("🙏Please Enter All the details")
 
     }
 

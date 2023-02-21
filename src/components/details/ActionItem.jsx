@@ -53,7 +53,7 @@ const ActionItem = (props) => {
         <Image src={props.itemData.image} alt="productImage" />
       </Box>
       <StyledButton onClick={()=>dispatch(addToCart(props.itemData))} style={{ marginRight: 10, background: '#ff9f00' }} variant='contained'><ShoppingCartIcon />Add to Cart</StyledButton>
-      <StyledButton onClick={goToCart} style={{ background: '#fb641b' }} variant='contained'><FlashOnIcon />Buy Now</StyledButton>
+      <StyledButton onClick={goToCart} style={{ background: '#fb641b' }} variant='contained'><FlashOnIcon />Go to Cart</StyledButton>
     </LeftContainer>
   )
 }

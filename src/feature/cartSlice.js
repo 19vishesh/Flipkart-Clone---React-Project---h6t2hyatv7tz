@@ -10,9 +10,11 @@ import productData from "../data/allProductData";
 //     return response.json();
 // });
 
-
 //Getting cartdata form localstorage
 const getLocalCartData = () => {
+    if (localStorage.getItem("shoppingCart") === null || localStorage.getItem("shoppingCart") !== []) {
+        return [];
+    }
     const localData = localStorage.getItem("shoppingCart");
     if (localData === [])
         return [];
@@ -20,16 +22,9 @@ const getLocalCartData = () => {
         return JSON.parse(localData);
 }
 
-// function datacall() {
-//     const productData = useContext(apiProductData);
-// }
-
-// useEffect(() => {
-//     datacall();
-// }, []);
 
 const initialState = {
-    cart: [],
+    // cart: [],
     cart: getLocalCartData(),
     item: productData,
     totalQuantity: 0,

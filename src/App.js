@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import { fetchApiData } from "./feature/cartSlice";
@@ -14,11 +14,24 @@ import Cart from './components/cart/Cart'
 import DetailView from './components/details/DetailView';
 import Shipping from "./components/shipping/Shipping";
 import Context from "./context/Context";
-
+import allProductData from "./data/allProductData";
 
 
 //=======================================function starts=======================================
 function App() {
+
+  // const items = useSelector((state) => state.allCart.item);
+  // const first = items[0];
+
+  // const [itemData, setItemData] = useState([]);
+  
+  // useEffect(() => {
+  //   // setItemData(items[3]);
+  //   console.log(first)
+  //   if (localStorage.getItem("shoppingCart") === null) {
+  //     localStorage.setItem("shoppingCart", first);
+  //   }
+  // }, []);
 
   return (
       <Context>

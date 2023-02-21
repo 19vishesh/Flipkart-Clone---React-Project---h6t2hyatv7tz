@@ -72,7 +72,8 @@ const CustomButton = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCartTotal());
+    // if(localStorage.getItem("shoppingCart")===null || localStorage.getItem("shoppingCart")!==[])
+      dispatch(getCartTotal());
   }, [cart]);
 
 

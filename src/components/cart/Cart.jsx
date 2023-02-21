@@ -75,7 +75,7 @@ const Cart = () => {
                             }
                         </div>
                         <BottomWrapper>
-                            <StyledButton onClick={goToPlaceOrder} variant="contained">Go to Cart</StyledButton>
+                            <StyledButton onClick={goToPlaceOrder} variant="contained">Place Order</StyledButton>
                         </BottomWrapper>
                     </LeftComponent>
                     <Grid item lg={3} md={3} sm={12} xs={12}>
