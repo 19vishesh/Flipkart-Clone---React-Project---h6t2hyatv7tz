@@ -4,6 +4,8 @@ import { Box, Button, styled } from '@mui/material'
 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../feature/cartSlice';
 
 const LeftContainer = styled(Box)(({ theme }) => ({
   minWidth: '40%',
@@ -40,6 +42,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const ActionItem = (props) => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const goToCart = () => {
     navigate('/cart');
@@ -49,7 +52,7 @@ const ActionItem = (props) => {
       <Box style={{ padding: '15px 20px', border: '1px solid #f0f0f0' }}>
         <Image src={props.itemData.image} alt="productImage" />
       </Box>
-      <StyledButton style={{ marginRight: 10, background: '#ff9f00' }} variant='contained'><ShoppingCartIcon />Add to Cart</StyledButton>
+      <StyledButton onClick={()=>dispatch(addToCart(props.itemData))} style={{ marginRight: 10, background: '#ff9f00' }} variant='contained'><ShoppingCartIcon />Add to Cart</StyledButton>
       <StyledButton onClick={goToCart} style={{ background: '#fb641b' }} variant='contained'><FlashOnIcon />Buy Now</StyledButton>
     </LeftContainer>
   )

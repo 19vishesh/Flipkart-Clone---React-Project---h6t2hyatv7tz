@@ -6,9 +6,8 @@ import { Link } from 'react-router-dom';
 //for react countdown
 import Countdown from 'react-countdown';
 
-import  {productData}  from '../../data/allProductData';
-
 import { apiProductData } from '../../App';
+import { useSelector } from 'react-redux';
 
 
 // Carousel breakpoints
@@ -85,7 +84,8 @@ const Slide = (props) => {
     //     fetchData();
     // }, []);
 
-
+    const items = useSelector((state) => state.allCart.item);
+    // console.log(items)
 
     const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
 
@@ -120,13 +120,13 @@ const Slide = (props) => {
 
             >
                 {
-                    productData.map(data => (
-                        <Link to={`products/${data.id}`} style={{textDecoration:'none'}}>
+                    items.map(item => (
+                        <Link to={`products/${item.id}`} style={{textDecoration:'none'}}>
                             <Box textAlign='center' style={{ padding: '25px 15px' }}>
-                                <Image src={data.image} alt="banner" />
-                                <Text style={{ fontWeight: 600, color: '#212121' }}>{data.title}</Text>
-                                <Text style={{ color: 'green' }}>$ {data.price} only</Text>
-                                <Text style={{}}>{data.category}</Text>
+                                <Image src={item.image} alt="banner" />
+                                <Text style={{ fontWeight: 600, color: '#212121' }}>{item.title}</Text>
+                                <Text style={{ color: 'green' }}>$ {item.price} only</Text>
+                                <Text style={{}}>{item.category}</Text>
                             </Box>
                         </Link>
                     ))

@@ -8,6 +8,7 @@ import  {productData}  from '../../data/allProductData';
 import ProductDetail from './ProductDetail';
 
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Component = styled(Box)`
     margin-top: 55px;
@@ -56,15 +57,15 @@ const DetailView = () => {
 
     const [itemData, setItemData] = useState([]);
     // // ============================================================================ using async await ===================================================================
-    const fetchApiData = async (url) => {
-        try {
-            const res = await fetch(url);
-            const data = await res.json();
-            setItemData(data);
-        } catch (e) {
-            console.log(e.message)
-        }
-    };
+    // const fetchApiData = async (url) => {
+    //     try {
+    //         const res = await fetch(url);
+    //         const data = await res.json();
+    //         setItemData(data);
+    //     } catch (e) {
+    //         console.log(e.message)
+    //     }
+    // };
     
     // function getData(prid) {   
     //     // {
@@ -84,9 +85,9 @@ const DetailView = () => {
        
     // }
 
-    useEffect(() => {
-        fetchApiData(`https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/${fetchId.id}`);
-    }, []);
+    // useEffect(() => {
+    //     fetchApiData(`https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/${fetchId.id}`);
+    // }, []);
 
     // useEffect(() => {
     //     // fetchApiData(`http://localhost:3001/products/${fetchId.id}`);
@@ -105,6 +106,14 @@ const DetailView = () => {
     //     console.log(productElement);
 
     // }, []);
+
+    const items = useSelector((state) => state.allCart.item);
+    useEffect(() => {
+        setItemData(items[fetchId.id-1]);
+        // console.log(itemData)
+    }, []);
+
+    
     
 
     return (

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { Dialog, Box, Typography, TextField, Button, styled } from '@mui/material'
+import { AccountContext } from '../../context/Context'
 
 const Component = styled(Box)`
     height: 70vh;
@@ -68,12 +69,9 @@ const accountInitialValues = {
 };
 
 const signupInitialValues = {
-    firstname: '',
-    lastname: '',
-    username: '',
+    name:'',
     email: '',
     password: '',
-    phone: ''
 };
 
 
@@ -81,7 +79,9 @@ const signupInitialValues = {
 const LoginDialog = (props) => {
 
     const [account, toggleAccount] = useState(accountInitialValues.login);
-    const [signup, setSignup] = useState(signupInitialValues);
+    // const [signup, setSignup] = useState(signupInitialValues);
+// 
+    // const { userAccount, setUserAccount } = useContext(AccountContext);
 
     const handleClose = () => {
         props.setOpen(false);
@@ -90,39 +90,88 @@ const LoginDialog = (props) => {
     const toggleSignup = () => {
         toggleAccount(accountInitialValues.signup);
     }
-    const onInputChange = (e) => {
-        setSignup({ ...signup, [e.target.name]: e.target.value });
-        console.log(signup)
+    // const onInputChange = (e) => {
+    //     setSignup({ ...signup, [e.target.name]: e.target.value });
+    //     // console.log(signup)
+    // }
+
+    //================================= for localStorage Login starts =================================
+
+    const name = useRef();
+    const email = useRef();
+    const password = useRef();
+
+    const [accountPresent, setAccountPresent] = useState(false);
+
+    const [loginEmail, setLoginEmail] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
+
+    const [signupName, setSignupName] = useState('');
+    const [signupEmail, setSignupEmail] = useState('');
+    const [singupPassword, setSignupPassword] = useState('');
+
+    console.log(name)
+
+    const localSignUp = localStorage.getItem('signup');
+    const localEmail = localStorage.getItem('email');
+
+    const handleSignup = () => {
+        if (signupName !== '' && signupEmail !== '' && singupPassword !== '') {
+            localStorage.setItem("name", signupName)
+            localStorage.setItem("email", signupEmail)
+            localStorage.setItem("password", singupPassword)
+            localStorage.setItem("signup", signupEmail)
+            alert('Account created');
+            window.location.reload();
+        } else {
+            alert('all field requied')
+        }
     }
 
+    const handleLogin = () => {
+        if (loginEmail === localStorage.getItem('email') && loginPassword === localStorage.getItem('password')) {
+            localStorage.setItem('signup', signupEmail);
+            // window.location.reload();
+            handleClose();
+
+        } else {
+            alert('Enter correct Credentials')
+        }
+
+    }
+
+
+    //================================= for localStorage Login starts =================================
+
+
     return (
-        <Dialog open={props.open} onClose={handleClose} PaperProps={{sx:{maxWidth:'unset'}}}>
+        <Dialog open={props.open} onClose={handleClose} PaperProps={{ sx: { maxWidth: 'unset' } }}>
             <Component>
-                <Box style={{display:'flex', height:'100%'}}>
+                <Box style={{ display: 'flex', height: '100%' }}>
                     <Image>
                         <Typography variant="h5">{account.heading}</Typography>
                         <Typography style={{ marginTop: 20 }}>{account.subHeading}</Typography>
                     </Image>
                     {account.view === 'login' ?
                         <Wrapper>
-                            <TextField variant="standard" label="Enter Email/Mobile number" />
-                            <TextField variant="standard" label="Enter Password" />
+                            
+                            <TextField variant="standard" label="Enter Email/Mobile number" onChange={(e) => setLoginEmail(e.target.value)}/>
+                            <TextField variant="standard" label="Enter Password" onChange={(e) => setLoginPassword(e.target.value)} />
                             <Text>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Text>
-                            <LoginButton>Login</LoginButton>
+                            <LoginButton onClick={handleLogin}>Login</LoginButton>
                             <Typography style={{ textAlign: 'center' }}>OR</Typography>
                             <RequestOTP>Request OTP</RequestOTP>
                             <CreateAccount onClick={toggleSignup}>New to Flipkart? Create an account</CreateAccount>
                         </Wrapper>
                         :
                         <Wrapper>
-                            <TextField variant="standard" onChange={(e)=>onInputChange(e)} name="firstname" label="Enter Firstname" />
-                            <TextField variant="standard" onChange={(e)=>onInputChange(e)} name="lastname" label="Enter LastName" />
-                            <TextField variant="standard" onChange={(e)=>onInputChange(e)} name="username" label="Enter Username" />
-                            <TextField variant="standard" onChange={(e)=>onInputChange(e)} name="email" label="Enter Email" />
-                            <TextField variant="standard" onChange={(e)=>onInputChange(e)} name="password" label="Enter Password" />
-                            <TextField variant="standard" onChange={(e)=>onInputChange(e)} name="phone" label="Enter Phone" />
-                            <LoginButton >Continue</LoginButton>
-                            
+                            <TextField variant="standard" name="name" label="Enter Your Name" onChange={(e) => setSignupName(e.target.value)} />
+                            <TextField variant="standard" name="email" label="Enter Email" onChange={(e) => setSignupEmail(e.target.value)} />
+                            <TextField variant="standard" name="password" label="Enter Password" onChange={(e) => setSignupPassword(e.target.value)} />
+                            <LoginButton onClick={handleSignup}>Continue</LoginButton>
+                            {/* onChange={(e) => onInputChange(e)}
+                            onChange={(e) => onInputChange(e)}
+                            onChange={(e) => onInputChange(e)}  */}
                         </Wrapper>
                     }
                 </Box>
