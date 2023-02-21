@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react'
+import React, { useState, useContext } from 'react'
 import { Dialog, Box, Typography, TextField, Button, styled } from '@mui/material'
 import { AccountContext } from '../../context/Context'
 
@@ -76,6 +76,7 @@ const signupInitialValues = {
 
 
 //funtion starts
+//{open, setOpen, setAccountPresent} getting as props
 const LoginDialog = (props) => {
 
     const [account, toggleAccount] = useState(accountInitialValues.login);
@@ -97,10 +98,6 @@ const LoginDialog = (props) => {
 
     //================================= for localStorage Login starts =================================
 
-    const name = useRef();
-    const email = useRef();
-    const password = useRef();
-
     const [accountPresent, setAccountPresent] = useState(false);
 
     const [loginEmail, setLoginEmail] = useState('');
@@ -110,7 +107,7 @@ const LoginDialog = (props) => {
     const [signupEmail, setSignupEmail] = useState('');
     const [singupPassword, setSignupPassword] = useState('');
 
-    console.log(name)
+
 
     const localSignUp = localStorage.getItem('signup');
     const localEmail = localStorage.getItem('email');
@@ -120,9 +117,10 @@ const LoginDialog = (props) => {
             localStorage.setItem("name", signupName)
             localStorage.setItem("email", signupEmail)
             localStorage.setItem("password", singupPassword)
-            localStorage.setItem("signup", signupEmail)
+            localStorage.setItem("signup", signupName)
             alert('Account created');
-            window.location.reload();
+            // window.location.reload();
+            handleClose();
         } else {
             alert('all field requied')
         }
@@ -130,10 +128,12 @@ const LoginDialog = (props) => {
 
     const handleLogin = () => {
         if (loginEmail === localStorage.getItem('email') && loginPassword === localStorage.getItem('password')) {
-            localStorage.setItem('signup', signupEmail);
-            // window.location.reload();
-            handleClose();
-
+            // localStorage.setItem('signup', signupEmail);
+            // window.location.reload();  
+            alert('loggedIn')
+            localStorage.setItem("signup", localStorage.getItem("name"))
+            props.setOpen(false);
+            props.setAccountPresent(true);
         } else {
             alert('Enter correct Credentials')
         }

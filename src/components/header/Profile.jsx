@@ -25,11 +25,9 @@ const Profile = ({ localUserName, accountPresent, setAccountPresent }) => {
     };
 
     const logout = () => {
-        
             localStorage.removeItem('signup');
             setAccountPresent(false);
-            window.location.reload();
-        
+            // window.location.reload();
     }
 
     return (

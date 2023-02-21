@@ -58,6 +58,7 @@ const CustomButton = () => {
   //==================localStrorage
   const [accountPresent, setAccountPresent] = useState(false);
   const localUserName = localStorage.getItem('signup')
+  
 // ============================================
   // const { userAccount, setUserAccount } = useContext(AccountContext);
 
@@ -78,10 +79,10 @@ const CustomButton = () => {
 
   return (
     <Wrapper>
-      <LoginButton variant='contained' onClick={openDialog}>Login</LoginButton>
-      {/* {
-        accountPresent ? <Profile localUserName={localUserName} accountPresent={accountPresent} /> :
-      } */}
+      {
+        accountPresent ? <Profile localUserName={localUserName} accountPresent={accountPresent} setAccountPresent={setAccountPresent} /> :
+        <LoginButton variant='contained' onClick={openDialog}>Login</LoginButton>
+      }
       <Typography style={{ marginTop: 5, width: 135 }}>Become a Seller</Typography>
       <Typography style={{ marginTop: 5 }}>More</Typography>
 
@@ -92,7 +93,7 @@ const CustomButton = () => {
         </Badge>
         <Typography style={{ marginLeft: 10 }}>Cart</Typography>
       </Container>
-      <LoginDialog open={open} setOpen={setOpen} />
+      <LoginDialog open={open} setOpen={setOpen} setAccountPresent={setAccountPresent } />
     </Wrapper>
   )
 }
