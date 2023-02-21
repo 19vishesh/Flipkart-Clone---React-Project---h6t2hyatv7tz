@@ -10,7 +10,7 @@ const Component = styled(Menu)`
 
 const Logout = styled(Typography)`
     font-size: 14px;
-    margin-left: 20px;
+    margin-left: 5px;
 `;
 
 const Profile = ({ localUserName, accountPresent, setAccountPresent }) => {
@@ -25,9 +25,10 @@ const Profile = ({ localUserName, accountPresent, setAccountPresent }) => {
     };
 
     const logout = () => {
-            localStorage.removeItem('signup');
-            setAccountPresent(false);
-            // window.location.reload();
+        localStorage.removeItem('signup');
+        setAccountPresent(false);
+        alert("Logged Out ✈ Successfully!")
+        // window.location.reload();
     }
 
     return (

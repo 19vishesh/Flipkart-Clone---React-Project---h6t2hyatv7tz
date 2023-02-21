@@ -118,11 +118,11 @@ const LoginDialog = (props) => {
             localStorage.setItem("email", signupEmail)
             localStorage.setItem("password", singupPassword)
             localStorage.setItem("signup", signupName)
-            alert('Account created');
+            alert('Account created Successfully');
             // window.location.reload();
             handleClose();
         } else {
-            alert('all field requied')
+            alert('All fields Requied')
         }
     }
 
@@ -130,7 +130,7 @@ const LoginDialog = (props) => {
         if (loginEmail === localStorage.getItem('email') && loginPassword === localStorage.getItem('password')) {
             // localStorage.setItem('signup', signupEmail);
             // window.location.reload();  
-            alert('loggedIn')
+            alert('Welcome Back😍, LoggIn Successfully')
             localStorage.setItem("signup", localStorage.getItem("name"))
             props.setOpen(false);
             props.setAccountPresent(true);
