@@ -33,7 +33,7 @@ const Profile = ({ localUserName, accountPresent, setAccountPresent }) => {
 
     return (
         <>
-            <Box onClick={handleClick}><Typography style={{ marginTop: 2 }}>{localUserName}</Typography></Box>
+            <Box onClick={handleClick}><Typography style={{ marginTop: 2, cursor:'pointer' }}>{localUserName}</Typography></Box>
             <Component
                 anchorEl={open}
                 open={Boolean(open)}
