@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Dialog, Box, Typography, TextField, Button, styled } from '@mui/material'
-import { AccountContext } from '../../context/Context'
+// import { AccountContext } from '../../context/Context'
 
 const Component = styled(Box)`
     height: 70vh;
@@ -155,8 +155,8 @@ const LoginDialog = (props) => {
                     {account.view === 'login' ?
                         <Wrapper>
                             
-                            <TextField variant="standard" label="Enter Email/Mobile number" onChange={(e) => setLoginEmail(e.target.value)}/>
-                            <TextField variant="standard" label="Enter Password" onChange={(e) => setLoginPassword(e.target.value)} />
+                            <TextField  variant="standard" label="Enter Email/Mobile number" onChange={(e) => setLoginEmail(e.target.value)} required/>
+                            <TextField type="password" variant="standard" label="Enter Password" onChange={(e) => setLoginPassword(e.target.value)} required/>
                             <Text>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Text>
                             <LoginButton onClick={handleLogin}>Login</LoginButton>
                             <Typography style={{ textAlign: 'center' }}>OR</Typography>
@@ -167,7 +167,7 @@ const LoginDialog = (props) => {
                         <Wrapper>
                             <TextField variant="standard" name="name" label="Enter Your Name" onChange={(e) => setSignupName(e.target.value)} />
                             <TextField variant="standard" name="email" label="Enter Email" onChange={(e) => setSignupEmail(e.target.value)} />
-                            <TextField variant="standard" name="password" label="Enter Password" onChange={(e) => setSignupPassword(e.target.value)} />
+                            <TextField type="password" variant="standard" name="password" label="Enter Password" onChange={(e) => setSignupPassword(e.target.value)} />
                             <LoginButton onClick={handleSignup}>Continue</LoginButton>
                             {/* onChange={(e) => onInputChange(e)}
                             onChange={(e) => onInputChange(e)}

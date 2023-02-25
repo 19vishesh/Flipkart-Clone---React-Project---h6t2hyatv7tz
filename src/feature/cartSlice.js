@@ -5,16 +5,14 @@ import { useContext, useEffect, useState } from "react";
 
 import productData from "../data/allProductData";
 
-// export const fetchApiData = createAsyncThunk('fetchDatas', async () => {
-//     const response = await fetch("https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products");
-//     return response.json();
-// });
 
 //Getting cartdata form localstorage
 const getLocalCartData = () => {
-    if (localStorage.getItem("shoppingCart") === null || localStorage.getItem("shoppingCart") !== []) {
+    if (localStorage.getItem("shoppingCart") === null){
+        // localStorage.setItem("shoppingCart", []);
         return [];
     }
+
     const localData = localStorage.getItem("shoppingCart");
     if (localData === [])
         return [];
@@ -65,6 +63,8 @@ export const cartSlice = createSlice({
         },
         removeItem: (state, action) => {
             state.cart = state.cart.filter((item) => item.id !== action.payload)
+            localStorage.setItem("shoppingCart", JSON.stringify(state.cart))
+            
         },
         increaseItemQuantity: (state, action) => {
             state.cart = state.cart.map((item) => {

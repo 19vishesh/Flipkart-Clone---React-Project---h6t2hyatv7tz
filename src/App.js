@@ -13,8 +13,8 @@ import Home from './components/home/Home';
 import Cart from './components/cart/Cart'
 import DetailView from './components/details/DetailView';
 import Shipping from "./components/shipping/Shipping";
-import Context from "./context/Context";
-import allProductData from "./data/allProductData";
+// import Context from "./context/Context";
+// import allProductData from "./data/allProductData";
 
 
 //=======================================function starts=======================================
@@ -34,7 +34,7 @@ function App() {
   // }, []);
 
   return (
-      <Context>
+      
         <Router>
           <Header />
           <Box style={{ marginTop: 54 }}>
@@ -46,7 +46,7 @@ function App() {
             </Routes>
           </Box>
         </Router>
-      </Context>
+      
 
   );
 }

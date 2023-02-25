@@ -71,9 +71,12 @@ const CustomButton = () => {
   const { cart, totalQuantity } = useSelector((state) => state.allCart);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
-    // if(localStorage.getItem("shoppingCart")===null || localStorage.getItem("shoppingCart")!==[])
-      dispatch(getCartTotal());
+    dispatch(getCartTotal());
+    if (localStorage.getItem('signup') !== null) {
+      setAccountPresent(true);
+    }
   }, [cart]);
 
 
