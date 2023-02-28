@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // importing icon from mui
 import SearchIcon from '@mui/icons-material/Search';
+import { useSelector } from 'react-redux';
 
 const SearchContainer = styled(Box)`
   border-radius: 2px;
@@ -37,10 +38,13 @@ const Search = () => {
   const [text, setText] = useState('');
   const [productData, setProductData] = useState([]);
 
+  const items =  useSelector((state) => state.allCart.item)
+
   useEffect(() => {
-    fetch(`https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products`)
-      .then(response => response.json())
-      .then(json => setProductData(json))
+    setProductData(items)
+    // fetch(`https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products`)
+    //   .then(response => response.json())
+    //   .then(json => setProductData(json))
   }, []);
 
 
